@@ -1,9 +1,9 @@
 package main
 
 import (
-	"golang-restaurant-management-system/database"
-	"golang-restaurant-management-system/middleware"
-	"golang-restaurant-management-system/routes"
+	"golang-restaurant-management/database"
+	middleware "golang-restaurant-management/middleware"
+	routes "golang-restaurant-management/routes"
 	"os"
 
 	"github.com/gin-gonic/gin"

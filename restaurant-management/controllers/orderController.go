@@ -17,6 +17,7 @@ import (
 )
 
 var orderCollection *mongo.Collection = database.OpenCollection(database.Client, "order")
+var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 
 // var tableCollection *mongo.Collection = database.OpenCollection(database.Client, "table")
 
