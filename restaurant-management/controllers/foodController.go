@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"golang-restaurant-management/database"
 	"golang-restaurant-management/models"
+	"log"
 	"math"
 	"net/http"
 	"strconv"
@@ -49,8 +50,7 @@ func GetFoods() gin.HandlerFunc {
 
 		// aggregate the food items
 		result, err := foodCollection.Aggregate(ctx, mongo.Pipeline{
-			matchStage, groupStage, projectStage
-		})
+			matchStage, groupStage, projectStage})
 		defer cancel()
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while fetching the food items"})
@@ -138,7 +138,7 @@ func round(num float64) int {
 }
 
 func toFixed(num float64, precision int) float64 {
-	output := mat.Pow(10, float64(precision))
+	output := math.Pow(10, float64(precision))
 	return float64(round(num*output)) / output
 }
 
@@ -196,7 +196,7 @@ func UpdateFood() gin.HandlerFunc {
 			ctx,
 			filter,
 			bson.D{
-				{"$set", updateObj}
+				{"$set", updateObj},
 			},
 			&opt,
 		)
