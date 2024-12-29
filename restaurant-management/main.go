@@ -20,9 +20,9 @@ func main() {
 		port = "8000"
 	}
 
-	router := gin.New() //authorization middleware
-	router.Use(gin.Logger())
-	routes.UserRoutes(router)
+	router := gin.New() // Creates a new Gin router instance. It is the main entry point for routing. You can create a new router with gin.New().
+	router.Use(gin.Logger()) // Adds Gin's logging middleware to log HTTP requests. By default, it logs to the os.Stdout.
+	routes.UserRoutes(router) // Registers all the routes related to user functionality (e.g., signup, login, profile management).
 	router.Use(middleware.Authentication()) //check if user is authenticated or not, if authenticated, they are allowed to use the below routes
 
 	routes.FoodRoutes(router)
